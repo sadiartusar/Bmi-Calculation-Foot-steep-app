@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 exports.register = async (req, res) => {
+     console.log("নতুন রেজিস্ট্রেশন রিকোয়েস্ট এসেছে:", req.body);
     const { name, email, password, height, weight } = req.body;
     try {
         const [existing] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
