@@ -34,16 +34,16 @@ exports.login = async (req, res) => {
 
         const token = jwt.sign({ id: users[0].id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
-        // নিচে লক্ষ্য করুন: আমি email এবং created_at যোগ করে দিয়েছি
+        
         res.json({ 
             token, 
             user: { 
                 id: users[0].id, 
                 name: users[0].name, 
-                email: users[0].email, // এই লাইনটি যোগ করা হয়েছে
+                email: users[0].email,
                 height: users[0].height, 
                 weight: users[0].weight,
-                created_at: users[0].created_at // এই লাইনটি যোগ করা হয়েছে
+                created_at: users[0].created_at
             } 
         });
     } catch (err) {
