@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
-const pool = mysql.createPool(process.env.DATABASE_URL + "&ssl-mode=REQUIRED");
+const pool = mysql.createPool(process.env.DATABASE_URL);
 
 // const pool = mysql.createPool({
 //     host: process.env.DB_HOST,
@@ -21,13 +21,13 @@ const pool = mysql.createPool(process.env.DATABASE_URL + "&ssl-mode=REQUIRED");
 
 
 
-// pool.getConnection((err, connection) => {
-//     if (err) {
-//         console.error("ডাটাবেস কানেকশন এরর:", err.message);
-//     } else {
-//         console.log("ডাটাবেস কানেকশন সফল হয়েছে!");
-//         connection.release();
-//     }
-// });
+pool.getConnection((err, connection) => {
+    if (err) {
+        console.error("ডাটাবেস কানেকশন এরর:", err.message);
+    } else {
+        console.log("ডাটাবেস কানেকশন সফল হয়েছে!");
+        connection.release();
+    }
+});
 
 module.exports = pool.promise();
